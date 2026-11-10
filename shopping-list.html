@@ -1,0 +1,36 @@
+<form id="shopping-form">
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button type="submit">Add item</button>
+    </form>
+
+    <ul></ul>
+
+    <script>
+      const list = document.querySelector("ul")
+      const input = document.querySelector("input")
+      const form = document.querySelector("form")
+
+      function addItem(e) {
+        e.preventDefault()
+        const val = input.value.trim()
+        if (!val) return 
+        
+        input.value = ""
+        const li = document.createElement("li")
+        const span = document.createElement("span")
+        const bd = document.createElement("button")
+        
+        span.textContent = val
+        bd.textContent = "Delete"
+        
+        li.appendChild(span)
+        li.appendChild(bd)
+        list.appendChild(li)
+        
+        bd.addEventListener("click", () => li.remove())
+        input.focus()
+      }
+
+      form.addEventListener("submit", addItem)
+    </script>
